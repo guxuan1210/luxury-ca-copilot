@@ -41,7 +41,9 @@ Written Challenge 要求构建一个「对话工具」，帮助奢侈品牌客�
 ```mermaid
 flowchart TD
     A[User Input] --> B[Input Validation]
-    B --> C[Scenario Router]
+    B --> X{客户要求停联?\nDo-not-contact?}
+    X -->|是 / Yes| Y[停联确认\nStop-contact Ack]
+    X -->|否 / No| C[Scenario Router]
     C --> D[Prompt Builder]
     E[Brand Guidelines] --> D
     F[Scenario Rules] --> D

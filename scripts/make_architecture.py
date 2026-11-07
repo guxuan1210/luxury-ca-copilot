@@ -63,97 +63,95 @@ def main() -> None:
     out_dir = config.REPORTS_DIR / "screenshots"
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    fig, ax = plt.subplots(figsize=(11, 9))
-    ax.set_xlim(0, 11)
-    ax.set_ylim(0, 9)
+    fig, ax = plt.subplots(figsize=(13.5, 12))
+    ax.set_xlim(0, 13.5)
+    ax.set_ylim(0, 12)
     ax.axis("off")
 
-    BW, BH = 2.6, 0.7  # box width / height
+    BH = 0.7          # box height
+    cx = 4.8          # main spine left x
+    cw = 2.6          # main box width
+    mid_x = cx + cw / 2  # 6.1
 
-    # --- Center main pipeline (x from 4.2 to 6.8) ---
-    cx = 4.2
-    cw = 2.6
+    # --- Center main pipeline (top to bottom; value = box bottom y) ---
+    pos = {
+        "用户输入 User Input": 10.6,
+        "输入校验 Input Validation": 9.3,
+        "场景路由 Scenario Router": 7.4,
+        "Prompt 组装 Prompt Builder": 5.9,
+        "LLM 生成 LLM Generation": 4.4,
+        "结构化输出解析\nOutput Parser": 2.9,
+    }
+    for label, y in pos.items():
+        box(ax, cx, y, cw, BH, label, C_MAIN, fs=10.5)
 
-    nodes = [
-        ("用户输入 User Input", C_MAIN),
-        ("输入校验 Input Validation", C_MAIN),
-        ("场景路由 Scenario Router", C_MAIN),
-        ("Prompt 组装 Prompt Builder", C_MAIN),
-        ("LLM 生成 LLM Generation", C_MAIN),
-        ("结构化输出解析\nOutput Parser", C_MAIN),
-    ]
-    y0 = 8.1
-    gap = 1.35
-    positions = {}
-    for i, (label, col) in enumerate(nodes):
-        y = y0 - i * gap
-        positions[label] = (cx, y)
-        box(ax, cx, y, cw, BH, label, col, fs=10.5)
+    # Do-not-contact decision (inline, between 输入校验 and 场景路由).
+    dnc_cy = 8.7
+    dnc_h = 0.8
+    diamond(ax, cx, dnc_cy - dnc_h / 2, cw, dnc_h, "客户要求停联?\nDo-not-contact?", C_DECIDE, fs=9.5)
+    # 停联确认 terminal (branch right on "是 / Yes").
+    box(ax, 8.4, dnc_cy - BH / 2, 2.6, BH, "停联确认\nStop-contact Ack", C_OUTPUT, fs=10.5)
 
-    # Decision diamond
-    dy = y0 - 6 * gap
-    dw, dh = 2.6, 0.85
-    diamond(ax, cx, dy - dh / 2, dw, dh, "校验通过?\nValidation", C_DECIDE, fs=10)
+    # Validation decision (after 输出解析).
+    val_cy = 1.9
+    val_h = 0.8
+    diamond(ax, cx, val_cy - val_h / 2, cw, val_h, "校验通过?\nValidation", C_DECIDE, fs=10)
 
-    # Final output + retry
-    out_y = dy - dh / 2 - 1.7
-    box(ax, cx - 3.6, out_y, 2.6, BH, "三条中文话术\nThree Messages", C_OUTPUT, fs=10.5)
-    box(ax, cx + 1.0, out_y, 2.4, BH, "重试 / 错误处理\nRetry", "#c05a5a", fs=10.5)
+    # Final output + retry (bottom row).
+    out_y = 0.5
+    box(ax, 0.6, out_y, 2.6, BH, "三条中文话术\nThree Messages", C_OUTPUT, fs=10.5)
+    box(ax, 6.0, out_y, 2.4, BH, "重试 / 错误处理\nRetry", "#c05a5a", fs=10.5)
 
-    # Vertical main arrows
-    prev_y = positions[nodes[0][0]]
-    for i in range(1, len(nodes)):
-        label = nodes[i][0]
-        y = positions[label][1]
-        arrow(ax, cx + cw / 2, y + BH, cx + cw / 2, y + BH + 0.65, color=C_EDGE)
+    # --- Main spine arrows (top-down) ---
+    arrow(ax, mid_x, pos["用户输入 User Input"], mid_x, pos["输入校验 Input Validation"] + BH, color=C_EDGE)
+    arrow(ax, mid_x, pos["输入校验 Input Validation"], mid_x, dnc_cy + dnc_h / 2, color=C_EDGE)
+    arrow(ax, mid_x, dnc_cy - dnc_h / 2, mid_x, pos["场景路由 Scenario Router"] + BH, color=C_EDGE, label="否 / No", lx=0.6, ly=0.0)
+    arrow(ax, cx + cw, dnc_cy, 8.4, dnc_cy, color="#2e7d32", label="是 / Yes", lx=0.25, ly=0.2)
+    arrow(ax, mid_x, pos["场景路由 Scenario Router"], mid_x, pos["Prompt 组装 Prompt Builder"] + BH, color=C_EDGE)
+    arrow(ax, mid_x, pos["Prompt 组装 Prompt Builder"], mid_x, pos["LLM 生成 LLM Generation"] + BH, color=C_EDGE)
+    arrow(ax, mid_x, pos["LLM 生成 LLM Generation"], mid_x, pos["结构化输出解析\nOutput Parser"] + BH, color=C_EDGE)
+    arrow(ax, mid_x, pos["结构化输出解析\nOutput Parser"], mid_x, val_cy + val_h / 2, color=C_EDGE)
 
-    # LLM generation -> parser -> decision
-    arrow(ax, cx + cw / 2, dy + dh / 2 + 0.5, cx + cw / 2, dy + dh / 2 + 0.15, color=C_EDGE)
+    # Validation -> output (yes) / retry (no).
+    arrow(ax, cx - 0.5, val_cy - val_h / 2 + 0.15, 1.9, out_y + BH, color="#2e7d32", label="是 / Yes", lx=0.0, ly=-0.2)
+    arrow(ax, cx + cw + 0.4, val_cy - val_h / 2 + 0.15, 7.2, out_y + BH, color="#b71c1c", label="否 / No", lx=0.0, ly=-0.2)
 
-    # Decision -> output (yes) and -> retry (no)
-    arrow(ax, cx - 0.4, dy + dh / 2 - 0.1, cx - 2.3, out_y + BH + 0.1, color="#2e7d32", label="是 / Yes")
-    arrow(ax, cx + cw + 0.4, dy + dh / 2 - 0.1, cx + cw + 1.0, out_y + BH + 0.1, color="#b71c1c", label="否 / No")
-
-    # Retry loops back to LLM generation
-    arrow(ax, cx + cw + 2.2, out_y + BH / 2, cx + cw + 2.2, positions[nodes[4][0]][1] + BH / 2,
-          color="#b71c1c", ls="--")
-    arrow(ax, cx + cw + 2.2, positions[nodes[4][0]][1] + BH / 2, cx + cw, positions[nodes[4][0]][1] + BH / 2,
-          color="#b71c1c", ls="--")
+    # Retry loops back to LLM generation.
+    arrow(ax, 8.4, out_y + BH / 2, 9.6, out_y + BH / 2, color="#b71c1c", ls="--")
+    arrow(ax, 9.6, out_y + BH / 2, 9.6, pos["LLM 生成 LLM Generation"] + BH / 2, color="#b71c1c", ls="--")
+    arrow(ax, 9.6, pos["LLM 生成 LLM Generation"] + BH / 2, cx + cw, pos["LLM 生成 LLM Generation"] + BH / 2, color="#b71c1c", ls="--")
 
     # --- Left context inputs -> Prompt Builder ---
-    lx = 0.35
-    lw = 2.6
+    lx, lw = 0.35, 2.6
     ctx = [
-        ("品牌指南\nBrand Guidelines", 8.1),
-        ("场景规则\nScenario Rules", 6.9),
-        ("对话上下文\nConversation Context", 5.7),
+        ("品牌指南\nBrand Guidelines", 9.6),
+        ("场景规则\nScenario Rules", 8.2),
+        ("对话上下文\nConversation Context", 6.8),
     ]
-    pb_x, pb_y = positions["Prompt 组装 Prompt Builder"]
+    pb_y = pos["Prompt 组装 Prompt Builder"]
     for label, yy in ctx:
         box(ax, lx, yy, lw, BH, label, C_INPUT, fs=10.5)
         arrow(ax, lx + lw, yy + BH / 2, cx, pb_y + BH / 2, color=C_EDGE)
 
     # --- Right evaluation loop ---
-    rx = 8.6
-    rw = 2.2
-    ev_y = out_y + 0.0
-    box(ax, rx, ev_y, rw, BH, "评估管线\nEvaluation", C_EVAL, fs=10.5)
-    box(ax, rx, ev_y - 1.35, rw, BH, "指标与缺陷日志\nMetrics/Defects", C_EVAL, fs=10.5)
-    box(ax, rx, ev_y - 2.7, rw, BH, "Prompt 迭代\nRevision", C_EVAL, fs=10.5)
+    rx, rw = 10.4, 2.6
+    box(ax, rx, 5.4, rw, BH, "评估管线\nEvaluation", C_EVAL, fs=10.5)
+    box(ax, rx, 4.05, rw, BH, "指标与缺陷日志\nMetrics/Defects", C_EVAL, fs=10.5)
+    box(ax, rx, 2.7, rw, BH, "Prompt 迭代\nRevision", C_EVAL, fs=10.5)
 
     # output -> evaluation
-    arrow(ax, cx - 3.6 + 2.6, out_y + BH / 2, rx, out_y + BH / 2, color="#7b5e9b")
+    arrow(ax, 3.2, out_y + BH / 2, rx, 5.4 + BH / 2, color="#7b5e9b", ls="--")
     # evaluation chain down
-    arrow(ax, rx + rw / 2, ev_y, rx + rw / 2, ev_y - 0.65, color="#7b5e9b")
-    arrow(ax, rx + rw / 2, ev_y - 1.35, rx + rw / 2, ev_y - 2.0, color="#7b5e9b")
+    arrow(ax, rx + rw / 2, 5.4, rx + rw / 2, 4.75, color="#7b5e9b")
+    arrow(ax, rx + rw / 2, 4.05, rx + rw / 2, 3.4, color="#7b5e9b")
     # revision -> prompt builder (feedback)
-    arrow(ax, rx + rw / 2, ev_y - 2.7, rx + rw / 2, 1.2, color="#7b5e9b", ls="--")
-    arrow(ax, rx + rw / 2, 1.2, cx + cw, 1.2, color="#7b5e9b", ls="--")
-    arrow(ax, cx + cw, 1.2, cx + cw, pb_y + 0.1, color="#7b5e9b", ls="--")
+    arrow(ax, rx + rw / 2, 2.7, rx + rw / 2, 2.2, color="#7b5e9b", ls="--")
+    arrow(ax, rx + rw / 2, 2.2, cx + cw, 2.2, color="#7b5e9b", ls="--")
+    arrow(ax, cx + cw, 2.2, cx + cw, pb_y + 0.15, color="#7b5e9b", ls="--")
 
     # Streamlit UI output
-    box(ax, 8.6, 8.1, 2.2, BH, "Streamlit UI", "#5a8cae", fs=10.5)
-    arrow(ax, cx - 3.6 + 1.3, out_y + BH, 9.7, 8.1, color=C_EDGE, ls=":")
+    box(ax, 10.4, 10.6, 2.6, BH, "Streamlit UI", "#5a8cae", fs=10.5)
+    arrow(ax, 1.9, out_y + BH, 10.4, 10.6, color=C_EDGE, ls=":")
 
     ax.set_title("CHENGYU 客户顾问 AI Copilot — 系统架构", fontsize=14, pad=14, fontweight="bold")
 
