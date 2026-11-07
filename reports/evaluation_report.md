@@ -12,7 +12,7 @@
 
 ## D.2 Quantitative Results（量化结果）
 
-> 全量 50 案例、150 条输出；V1.0 为基线，V2.0 为迭代后最终版本。数字来自 `evaluation/results.csv` 与 `summary.json`（V1.0 归档于 `results_v1.0.csv` / `summary_v1.0.json`）。事实错误/边界违规同时给出 Judge 原始标记数与 L3 人工复核后的确证数，因为思考型 Judge 存在误报（详见 D.6）。
+> 全量 50 案例、150 条输出；V1.0 为基线，V2.0 为迭代后最终版本（其后 V2.1 新增 send_at 与 do_not_contact 两条护栏，见 E.8，未重跑全量评估）。数字来自 `evaluation/results.csv` 与 `summary.json`（V1.0 归档于 `results_v1.0.csv` / `summary_v1.0.json`）。事实错误/边界违规同时给出 Judge 原始标记数与 L3 人工复核后的确证数，因为思考型 Judge 存在误报（详见 D.6）。
 
 | 指标 | 目标 | V1.0 基线 | V2.0 最终 | 结论 |
 |---|---|---|---|---|
