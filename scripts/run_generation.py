@@ -118,17 +118,22 @@ def main() -> None:
             "Output 2": "",
             "Output 3": "",
         }
-        if result.success and result.output:
+        if result.blocked:
+            row["Output 1"] = result.block_message
+            row["Output 2"] = ""
+            row["Output 3"] = ""
+        elif result.success and result.output:
             texts = [m.text for m in result.output.messages]
             row["Output 1"], row["Output 2"], row["Output 3"] = texts[0], texts[1], texts[2]
 
+        status = "blocked" if result.blocked else ("success" if result.success else "failed")
         meta_rows.append({
             "Case ID": case.case_id,
             "Run ID": RUN_ID,
             "Model": config.ANTHROPIC_MODEL,
             "Prompt Version": config.MODEL_VERSION,
             "Timestamp": datetime.now(timezone.utc).isoformat(),
-            "Generation Status": "success" if result.success else "failed",
+            "Generation Status": status,
             "Latency ms": result.latency_ms,
             "Input Tokens": result.token_usage.get("input_tokens", ""),
             "Output Tokens": result.token_usage.get("output_tokens", ""),

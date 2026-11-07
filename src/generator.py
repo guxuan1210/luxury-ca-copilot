@@ -19,6 +19,9 @@ class GenerationResult:
     scenario: str
     success: bool
     output: GeneratedOutput | None = None
+    blocked: bool = False
+    block_reason: str = ""
+    block_message: str = ""
     error: str = ""
     latency_ms: int = 0
     retries: int = 0
@@ -26,8 +29,30 @@ class GenerationResult:
     token_usage: dict = field(default_factory=dict)
 
 
+def _detect_do_not_contact(case: TestCase) -> bool:
+    """True when the client has explicitly asked to stop receiving contact."""
+    text = (case.client.notes or "") + "\n" + "\n".join(
+        m.content for m in case.conversation_history if m.role == "client"
+    )
+    return any(kw in text for kw in config.DO_NOT_CONTACT_KEYWORDS)
+
+
 def generate(case: TestCase, client: anthropic.Anthropic | None = None) -> GenerationResult:
-    """Generate three candidate messages for a test case with retries."""
+    """Generate three candidate messages for a test case with retries.
+
+    Hard guardrail: if the client has explicitly requested no further contact,
+    no LLM call is made and a single non-marketing acknowledgment is returned.
+    """
+    if _detect_do_not_contact(case):
+        return GenerationResult(
+            case_id=case.case_id,
+            scenario=case.scenario,
+            success=True,
+            blocked=True,
+            block_reason="do_not_contact",
+            block_message=config.DO_NOT_CONTACT_REPLY,
+        )
+
     client = client or get_client()
     system_prompt = build_system_prompt(case.scenario)
     user_message = build_user_message(case)

@@ -39,6 +39,7 @@ def _format_scenario_rules(scenario: str, rules: dict) -> str:
 _PROMPT_FILES = {
     "v1.0": "system_prompt.md",
     "v2.0": "system_prompt_v2.md",
+    "v2.1": "system_prompt_v2.1.md",
 }
 
 
@@ -118,6 +119,12 @@ def _format_event(event: EventInfo | None) -> str:
     return "\n".join(parts)
 
 
+def _format_send_at(send_at: str) -> str:
+    if not send_at:
+        return "发送时间：未提供（禁止使用「今天/明天/后天/昨天」等相对时间词）"
+    return f"发送时间（话术应在此时间发送）：{send_at}"
+
+
 def build_user_message(case: TestCase) -> str:
     """Render the concrete input for a single test case."""
     blocks = [
@@ -140,6 +147,7 @@ def format_case_context(case: TestCase) -> str:
     event_block = _format_event(case.event_information)
     if event_block:
         blocks.append(event_block)
+    blocks.append(_format_send_at(case.send_at))
     return "\n---\n".join(blocks)
 
 

@@ -46,6 +46,9 @@ class TestCase(BaseModel):
     conversation_history: list[Message] = Field(default_factory=list)
     product_information: ProductInfo | None = None
     event_information: EventInfo | None = None
+    # Intended send datetime (ISO, e.g. "2026-11-06 09:00"). When empty, the model
+    # must not use relative-time words (今天/明天...) since it has no anchor.
+    send_at: str = ""
 
 
 class CandidateMessage(BaseModel):

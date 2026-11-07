@@ -42,3 +42,9 @@ def test_excessive_exclamation_flagged():
 def test_has_chinese():
     assert has_chinese("你好")
     assert not has_chinese("hello")
+
+
+def test_relative_time_term_flagged():
+    r = validate_output(_out("今天是您的生日，祝您快乐。", "第二句", "第三句"))
+    assert r.valid  # not a hard fail
+    assert any("relative-time" in f for f in r.flags)

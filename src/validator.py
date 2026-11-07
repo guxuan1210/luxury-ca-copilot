@@ -70,4 +70,10 @@ def validate_output(output: GeneratedOutput) -> ValidationResult:
         if bang_count >= 2:
             flags.append(f"message {i} 使用了 {bang_count} 个感叹号（可能过度营销）")
 
+    # 6. Soft flag: unanchored relative-time terms (need a send_at anchor)
+    for i, m in enumerate(msgs):
+        for term in config.RELATIVE_TIME_TERMS:
+            if term in m.text:
+                flags.append(f"message {i} uses relative-time term '{term}' (needs send_at anchor)")
+
     return ValidationResult(valid=not errors, errors=errors, flags=flags)

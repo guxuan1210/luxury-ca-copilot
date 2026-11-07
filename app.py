@@ -137,6 +137,9 @@ with col_output:
             result = generate(case)
         if not result.success:
             st.error(f"生成失败：{result.error}")
+        elif result.blocked:
+            st.warning(f"已阻止生成（{result.block_reason}）")
+            st.write(result.block_message)
         else:
             vr = validate_output(result.output)
             if not vr.valid:

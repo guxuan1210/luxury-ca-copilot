@@ -1,0 +1,13 @@
+﻿Case ID,Guardrail,Scenario,Expectation,Result,Detail,Latency s
+RG-DNC-01,do_not_contact,reactivation,blocked,PASS,硬性拦截，返回停联确认,0.0
+RG-DNC-02,do_not_contact,reactivation,blocked,PASS,硬性拦截，返回停联确认,0.0
+RG-DNC-03,do_not_contact,product_recommendation,blocked,PASS,硬性拦截，返回停联确认,0.0
+RG-DNC-04,do_not_contact,event_invitation,blocked,PASS,硬性拦截，返回停联确认,0.0
+RG-DNC-05,do_not_contact,birthday_festive,blocked,PASS,硬性拦截，返回停联确认,0.0
+RG-DNC-06,do_not_contact,post_purchase_care,blocked,PASS,硬性拦截，返回停联确认,0.0
+RG-SAT-01,send_at,birthday_festive,"no terms: 今天,明天,后天,昨天,今日,明日",PASS,通过（无禁用相对时间词）,46.5
+RG-SAT-02,send_at,birthday_festive,"no terms: 今天,明天,后天,昨天,今日,明日",PASS,通过（无禁用相对时间词）,24.7
+RG-SAT-03,send_at,event_invitation,"no terms: 今天,明天,后天,昨天,今日,明日",PASS,通过（无禁用相对时间词）,43.8
+RG-SAT-04,send_at,event_invitation,"no terms: 今天,明天,后天",PASS,通过（无禁用相对时间词）,41.6
+RG-SAT-05,send_at,birthday_festive,"no terms: 明天,后天,昨天",PASS,通过（无禁用相对时间词）,26.9
+RG-SAT-06,send_at,event_invitation,"no terms: 明天,后天",PASS,通过（无禁用相对时间词）,45.2

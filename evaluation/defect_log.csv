@@ -1,18 +1,18 @@
 ﻿Defect ID,Case ID,Version,Severity,Description,Evidence,Root Cause,Fix,Retest Result,Status
-FACTUAL-TC011,TC011,v2.0,Critical,LLM Judge 标记存在事实错误,,,,,Open
-LOW_SCORE-TC011,TC011,v2.0,Major,加权质量分 3.97 低于目标 4.2,,,,,Open
-FACTUAL-TC013,TC013,v2.0,Critical,LLM Judge 标记存在事实错误,,,,,Open
-RULE_FLAG-TC018,TC018,v2.0,Minor,message 2 contains possible offer/discount keyword: '折扣',,,,,Open
-LOW_SCORE-TC025,TC025,v2.0,Major,加权质量分 3.43 低于目标 4.2,,,,,Open
-FACTUAL-TC036,TC036,v2.0,Critical,LLM Judge 标记存在事实错误,,,,,Open
-RULE_FLAG-TC044,TC044,v2.0,Minor,message 0 contains possible offer/discount keyword: '折扣',,,,,Open
-RULE_FLAG-TC044,TC044,v2.0,Minor,message 1 contains possible offer/discount keyword: '折扣',,,,,Open
-RULE_FLAG-TC044,TC044,v2.0,Minor,message 2 contains possible offer/discount keyword: '折扣',,,,,Open
-LOW_SCORE-TC046,TC046,v2.0,Major,加权质量分 3.38 低于目标 4.2,,,,,Open
-LOW_SCORE-TC047,TC047,v2.0,Major,加权质量分 3.9 低于目标 4.2,,,,,Open
-RULE_FLAG-TC048,TC048,v2.0,Minor,message 0 contains possible offer/discount keyword: '折扣',,,,,Open
-RULE_FLAG-TC048,TC048,v2.0,Minor,message 1 contains possible offer/discount keyword: '折扣',,,,,Open
-RULE_FLAG-TC048,TC048,v2.0,Minor,message 2 contains possible offer/discount keyword: '折扣',,,,,Open
-RULE_FLAG-TC049,TC049,v2.0,Minor,message 0 contains possible offer/discount keyword: '优惠',,,,,Open
-RULE_FLAG-TC049,TC049,v2.0,Minor,message 1 contains possible offer/discount keyword: '优惠',,,,,Open
-RULE_FLAG-TC049,TC049,v2.0,Minor,message 2 contains possible offer/discount keyword: '优惠',,,,,Open
+FACTUAL-TC011,TC011,v2.0,Critical,LLM Judge 标记存在事实错误,输出 O1–O3 仅引用输入事实：历史购买 Osmanthus Moon、推荐 Winter Plum（腊梅/焚香/广藿香）；Judge 误标 factual=True。,思考型 Judge 将「落地于输入的虚构品牌/产品事实」误判为编造，属非确定性误报（E.2 #4）。,L3 人工复核确证输出均落地于输入事实，无需代码改动。,复核通过，无事实编造。,Closed（Judge 误报）
+LOW_SCORE-TC011,TC011,v2.0,Major,加权质量分 3.97 低于目标 4.2,加权分 3.97 略低于目标 4.2；差异度 4，factual=False，boundary=False。,产品推荐场景客户偏好信息有限，三条候选均以历史购买切入、开头趋同，相关性被 Judge 略压分（含 Judge 非确定性）。,见 E.6 #3/#4：为推荐与价格异议场景提供差异化价值陈述模板；待 V2.1 处理。,—（作为可接受权衡记录）,Open（已知局限）
+FACTUAL-TC013,TC013,v2.0,Critical,LLM Judge 标记存在事实错误,输出 O1–O3 仅引用输入事实：Cedar Reserve（雪松/香根草/烟草叶）与「想试木质调」偏好；加权分 4.72，Judge 误标 factual=True。,思考型 Judge 将「落地于输入的虚构品牌/产品事实」误判为编造，属非确定性误报（E.2 #4）。,L3 人工复核确证输出均落地于输入事实，无需代码改动。,复核通过，无事实编造。,Closed（Judge 误报）
+RULE_FLAG-TC018,TC018,v2.0,Minor,message 2 contains possible offer/discount keyword: '折扣',输出正确拒绝/澄清折扣或优惠（如「目前没有可确认的折扣」），触发 L1 关键词软提示。,L1「折扣/优惠」关键词软提示为表面启发式，无法区分「提供」与「拒绝」，正确拒绝折扣反而触发 flag（E.2 #5 / E.6 #5）。,L3 复核确认属正确行为（拒绝折扣）的误报；E.6 #5 提出语义化修复，待 V2.1 处理。,人工复核：输出均正确拒绝折扣，无实际违规。,Closed（软提示误报）
+LOW_SCORE-TC025,TC025,v2.0,Major,加权质量分 3.43 低于目标 4.2,加权分 3.43；差异度 4，factual=False，boundary=False。输出为通用问候，未引用具体购买/产品。,售后关怀场景输入未含具体购买记录，模型退化为通用问候，相关性不足（E.4 显示 4.03→3.43 回落）。,见 E.6 #2：偏好/购买时效建模，售后场景注入购买事实以提升相关性；待 V2.1 处理。,—,Open（已知局限）
+FACTUAL-TC036,TC036,v2.0,Critical,LLM Judge 标记存在事实错误,输出 O1–O3 仅引用输入事实：Amber Veil（历史选购）、活动时间 11月18日 19:00、地点上海旗舰店；Judge 误标 factual=True。,思考型 Judge 将「落地于输入的虚构品牌/活动事实」误判为编造，属非确定性误报（E.2 #4）。,L3 人工复核确证输出均落地于输入事实，无需代码改动。,复核通过，无事实编造。,Closed（Judge 误报）
+RULE_FLAG-TC044,TC044,v2.0,Minor,message 0 contains possible offer/discount keyword: '折扣',输出正确拒绝/澄清折扣或优惠（如「目前没有可确认的折扣」），触发 L1 关键词软提示。,L1「折扣/优惠」关键词软提示为表面启发式，无法区分「提供」与「拒绝」，正确拒绝折扣反而触发 flag（E.2 #5 / E.6 #5）。,L3 复核确认属正确行为（拒绝折扣）的误报；E.6 #5 提出语义化修复，待 V2.1 处理。,人工复核：输出均正确拒绝折扣，无实际违规。,Closed（软提示误报）
+RULE_FLAG-TC044,TC044,v2.0,Minor,message 1 contains possible offer/discount keyword: '折扣',输出正确拒绝/澄清折扣或优惠（如「目前没有可确认的折扣」），触发 L1 关键词软提示。,L1「折扣/优惠」关键词软提示为表面启发式，无法区分「提供」与「拒绝」，正确拒绝折扣反而触发 flag（E.2 #5 / E.6 #5）。,L3 复核确认属正确行为（拒绝折扣）的误报；E.6 #5 提出语义化修复，待 V2.1 处理。,人工复核：输出均正确拒绝折扣，无实际违规。,Closed（软提示误报）
+RULE_FLAG-TC044,TC044,v2.0,Minor,message 2 contains possible offer/discount keyword: '折扣',输出正确拒绝/澄清折扣或优惠（如「目前没有可确认的折扣」），触发 L1 关键词软提示。,L1「折扣/优惠」关键词软提示为表面启发式，无法区分「提供」与「拒绝」，正确拒绝折扣反而触发 flag（E.2 #5 / E.6 #5）。,L3 复核确认属正确行为（拒绝折扣）的误报；E.6 #5 提出语义化修复，待 V2.1 处理。,人工复核：输出均正确拒绝折扣，无实际违规。,Closed（软提示误报）
+LOW_SCORE-TC046,TC046,v2.0,Major,加权质量分 3.38 低于目标 4.2,加权分 3.38；差异度 3，三条候选均以「复述香调 + 尊重决定」收尾。,价格异议场景候选差异度塌缩，规则 10 约束下模型趋同（E.5 #3 明示 TC046 div=3）。,见 E.6 #3/#4：价格异议价值陈述模板打破趋同收尾；待 V2.1 处理。,—,Open（已知局限）
+LOW_SCORE-TC047,TC047,v2.0,Major,加权质量分 3.9 低于目标 4.2,加权分 3.90；差异度 4，factual=False，boundary=False。E.4 显示 4.12→3.90 回落。,规则 10 合规约束增强后相关性下降（E.2 #5 合规与相关性的张力）。,见 E.6 #4：价格异议价值陈述模板平衡合规与相关性；待 V2.1 处理。,—,Open（已知局限）
+RULE_FLAG-TC048,TC048,v2.0,Minor,message 0 contains possible offer/discount keyword: '折扣',输出正确拒绝/澄清折扣或优惠（如「目前没有可确认的折扣」），触发 L1 关键词软提示。,L1「折扣/优惠」关键词软提示为表面启发式，无法区分「提供」与「拒绝」，正确拒绝折扣反而触发 flag（E.2 #5 / E.6 #5）。,L3 复核确认属正确行为（拒绝折扣）的误报；E.6 #5 提出语义化修复，待 V2.1 处理。,人工复核：输出均正确拒绝折扣，无实际违规。,Closed（软提示误报）
+RULE_FLAG-TC048,TC048,v2.0,Minor,message 1 contains possible offer/discount keyword: '折扣',输出正确拒绝/澄清折扣或优惠（如「目前没有可确认的折扣」），触发 L1 关键词软提示。,L1「折扣/优惠」关键词软提示为表面启发式，无法区分「提供」与「拒绝」，正确拒绝折扣反而触发 flag（E.2 #5 / E.6 #5）。,L3 复核确认属正确行为（拒绝折扣）的误报；E.6 #5 提出语义化修复，待 V2.1 处理。,人工复核：输出均正确拒绝折扣，无实际违规。,Closed（软提示误报）
+RULE_FLAG-TC048,TC048,v2.0,Minor,message 2 contains possible offer/discount keyword: '折扣',输出正确拒绝/澄清折扣或优惠（如「目前没有可确认的折扣」），触发 L1 关键词软提示。,L1「折扣/优惠」关键词软提示为表面启发式，无法区分「提供」与「拒绝」，正确拒绝折扣反而触发 flag（E.2 #5 / E.6 #5）。,L3 复核确认属正确行为（拒绝折扣）的误报；E.6 #5 提出语义化修复，待 V2.1 处理。,人工复核：输出均正确拒绝折扣，无实际违规。,Closed（软提示误报）
+RULE_FLAG-TC049,TC049,v2.0,Minor,message 0 contains possible offer/discount keyword: '优惠',输出正确拒绝/澄清折扣或优惠（如「目前没有可确认的折扣」），触发 L1 关键词软提示。,L1「折扣/优惠」关键词软提示为表面启发式，无法区分「提供」与「拒绝」，正确拒绝折扣反而触发 flag（E.2 #5 / E.6 #5）。,L3 复核确认属正确行为（拒绝折扣）的误报；E.6 #5 提出语义化修复，待 V2.1 处理。,人工复核：输出均正确拒绝折扣，无实际违规。,Closed（软提示误报）
+RULE_FLAG-TC049,TC049,v2.0,Minor,message 1 contains possible offer/discount keyword: '优惠',输出正确拒绝/澄清折扣或优惠（如「目前没有可确认的折扣」），触发 L1 关键词软提示。,L1「折扣/优惠」关键词软提示为表面启发式，无法区分「提供」与「拒绝」，正确拒绝折扣反而触发 flag（E.2 #5 / E.6 #5）。,L3 复核确认属正确行为（拒绝折扣）的误报；E.6 #5 提出语义化修复，待 V2.1 处理。,人工复核：输出均正确拒绝折扣，无实际违规。,Closed（软提示误报）
+RULE_FLAG-TC049,TC049,v2.0,Minor,message 2 contains possible offer/discount keyword: '优惠',输出正确拒绝/澄清折扣或优惠（如「目前没有可确认的折扣」），触发 L1 关键词软提示。,L1「折扣/优惠」关键词软提示为表面启发式，无法区分「提供」与「拒绝」，正确拒绝折扣反而触发 flag（E.2 #5 / E.6 #5）。,L3 复核确认属正确行为（拒绝折扣）的误报；E.6 #5 提出语义化修复，待 V2.1 处理。,人工复核：输出均正确拒绝折扣，无实际违规。,Closed（软提示误报）

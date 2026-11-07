@@ -51,7 +51,7 @@ python scripts/build_test_cases.py
 python scripts/run_generation.py
 ```
 
-> **Prompt 版本切换**：默认使用 V2.0（最终版）。要复现 V1.0 基线，用 `CHENGYU_MODEL_VERSION=v1.0` 前缀运行（Windows PowerShell：`$env:CHENGYU_MODEL_VERSION="v1.0"; python scripts/run_generation.py`）。两版产出已分别归档为 `data/*_v1.0.*` 与 `data/*_v2.0.*`。
+> **Prompt 版本切换**：默认使用 V2.0。V2.1 新增两条护栏（见下）。要复现 V1.0 基线，用 `CHENGYU_MODEL_VERSION=v1.0` 前缀运行（Windows PowerShell：`$env:CHENGYU_MODEL_VERSION="v1.0"; python scripts/run_generation.py`）。各版产出已分别归档为 `data/*_v1.0.*`、`data/*_v2.0.*` 与 `data/regression_*_v2.1.*`。
 
 产出：
 - `data/generated_outputs.csv`（官方 8 列格式）
@@ -69,7 +69,17 @@ python scripts/run_evaluation.py
 - `evaluation/summary.json`
 - `evaluation/defect_log.csv`
 
-### 7. 运行单元测试
+### 7. 运行 V2.1 护栏回归（send_at + do_not_contact）
+
+```bash
+CHENGYU_MODEL_VERSION=v2.1 python scripts/run_guardrail_regression.py
+```
+
+12 个专项案例验证两条护栏（见 `reports/defects_and_next_steps.md` E.8）：
+- **do_not_contact 护栏**：客户明确要求停止联系时，生成前置硬性拦截，不调用 LLM，返回单条停联确认。
+- **send_at 时间护栏**：未提供发送时间时禁止使用「今天/明天」等相对时间词，只能引用输入中的具体日期。
+
+### 8. 运行单元测试
 
 ```bash
 python -m pytest tests/ -q
@@ -99,13 +109,16 @@ luxury-ca-copilot/
 │   ├── brand_guidelines.md       # 品牌语气与沟通规则
 │   ├── system_prompt.md          # System Prompt 模板（V1.0）
 │   ├── system_prompt_v2.md       # System Prompt 模板（V2.0）
+│   ├── system_prompt_v2.1.md     # System Prompt 模板（V2.1，含时间护栏规则）
 │   └── scenario_rules.yaml       # 六场景专属规则
 │
 ├── data/
 │   ├── products.json             # 虚构产品目录
 │   ├── test_cases.jsonl          # 50 个测试案例
-│   ├── generated_outputs.csv     # 官方 8 列输出
-│   └── run_metadata.csv          # 版本与运行元数据
+│   ├── generated_outputs.csv     # 官方 8 列输出（当前版本）
+│   ├── run_metadata.csv          # 版本与运行元数据
+│   ├── *_v1.0.* / *_v2.0.*       # V1.0 / V2.0 归档产物
+│   └── regression_*_v2.1.*       # V2.1 护栏回归（cases / results / evidence）
 │
 ├── evaluation/
 │   ├── evaluator.py              # 规则检查 + LLM Judge
@@ -118,6 +131,7 @@ luxury-ca-copilot/
 │   ├── build_test_cases.py       # 构建 50 案例
 │   ├── run_generation.py         # 批量生成
 │   ├── run_evaluation.py         # 批量评估
+│   ├── run_guardrail_regression.py  # V2.1 护栏回归
 │   └── make_charts.py            # 评估图表
 │
 ├── reports/

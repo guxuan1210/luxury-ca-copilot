@@ -99,4 +99,33 @@
 
 ## E.7 已知缺陷追踪
 
-完整缺陷清单见 `evaluation/defect_log.csv`（Defect ID、Case ID、Severity、Description、Root Cause、Fix、Retest Result、Status 十列）。
+完整缺陷清单见 `evaluation/defect_log.csv`（Defect ID、Case ID、Severity、Description、Root Cause、Fix、Retest Result、Status 十列）。V2.0 缺陷已闭环：3 项 Critical（FACTUAL）经 L3 人工复核确证为 Judge 误报（Status=Closed），10 项 Minor（RULE_FLAG）为「拒绝折扣」触发的软提示误报（Status=Closed），4 项 Major（LOW_SCORE）为合规约束下的相关性权衡，已记录根因与 E.6 改进指向（Status=Open 已知局限）。
+
+## E.8 V2.1 修复：时间护栏与停止联系护栏（新增）
+
+针对 V2.0 未覆盖的两处边界缺陷，新增两条护栏，并以 12 个专项回归案例验证（脚本 `scripts/run_guardrail_regression.py`，结果见 `data/regression_results_v2.1.csv`、`data/regression_evidence_v2.1.txt`）。
+
+### 1. send_at 时间护栏（相对时间词锚定）
+
+- **缺陷**：V2.0 在生日/活动场景会无锚定地使用「今天/明天」等相对时间词。例如 TC001（客户生日「11 月 6 日」写于 notes，但无发送时间）产出「今天是您的生日」（O2）——模型并不知道发送当天是否即为生日。
+- **修复**：新增 `send_at` 输入字段（`src/schemas.py`）+ 硬性规则 12（`prompts/system_prompt_v2.1.md`）：未提供发送时间时禁止使用「今天/明天/后天/昨天」等相对时间词，只能引用输入中的具体日期；提供发送时间时相对时间词必须与之一致。配套在 `src/validator.py` 增加相对时间词软提示。
+- **回归**（6 例，全部 PASS）：
+
+| 案例 | 场景 | 断言（禁止出现的词） | 结果 |
+|---|---|---|---|
+| RG-SAT-01 | 生日（无 send_at，生日 11/6） | 今天/明天/后天/昨天 | PASS（改用「11月6日」）|
+| RG-SAT-02 | 生日（无 send_at，生日 11/9） | 今天/明天/后天/昨天 | PASS |
+| RG-SAT-03 | 活动（无 send_at，11/18） | 今天/明天/后天/昨天 | PASS |
+| RG-SAT-04 | 活动（send_at 11/10，活动 11/18） | 今天/明天/后天 | PASS |
+| RG-SAT-05 | 生日（send_at 11/6 = 生日当天） | 明天/后天/昨天 | PASS（可用「今天」）|
+| RG-SAT-06 | 活动（send_at 11/18 = 活动当天） | 明天/后天 | PASS（用「今晚」/具体日期）|
+
+### 2. do_not_contact 停止联系护栏（生成前置硬拦截）
+
+- **缺陷**：V2.0 规则 11 只覆盖「减少联系→退化为非营销问候」，未覆盖客户明确说「别再联系/退订」的场景，仍存在生成营销话术的风险。
+- **修复**：`src/generator.py` 在生成前检测客户 notes 与历史对话中的停联意图（关键词见 `config.DO_NOT_CONTACT_KEYWORDS`），命中则**不调用 LLM**，直接返回单条停联确认（`config.DO_NOT_CONTACT_REPLY`）。
+- **回归**（6 例，全部 PASS）：RG-DNC-01…06 覆盖「别再联系 / 请勿再联系 / 停止联系 / 别再发 / 退订 / 不再接收」等不同措辞，均被硬拦截并返回停联确认，延迟 0.0s（未调用 LLM）。
+
+### 结论
+
+12/12 专项回归通过。两条护栏分别在**代码层**（do_not_contact 确定性拦截）与 **Prompt 层**（send_at 规则 12）落地，覆盖 V2.0 的剩余边界缺陷，无需重跑全量 50 案例。仍存在的局限（E.5/E.6 中的相关性权衡与软提示语义化）保持不变。
