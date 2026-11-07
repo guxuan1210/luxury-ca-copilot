@@ -1,0 +1,18 @@
+﻿Defect ID,Case ID,Version,Severity,Description,Evidence,Root Cause,Fix,Retest Result,Status
+FACTUAL-TC011,TC011,v2.0,Critical,LLM Judge 标记存在事实错误,,,,,Open
+LOW_SCORE-TC011,TC011,v2.0,Major,加权质量分 3.97 低于目标 4.2,,,,,Open
+FACTUAL-TC013,TC013,v2.0,Critical,LLM Judge 标记存在事实错误,,,,,Open
+RULE_FLAG-TC018,TC018,v2.0,Minor,message 2 contains possible offer/discount keyword: '折扣',,,,,Open
+LOW_SCORE-TC025,TC025,v2.0,Major,加权质量分 3.43 低于目标 4.2,,,,,Open
+FACTUAL-TC036,TC036,v2.0,Critical,LLM Judge 标记存在事实错误,,,,,Open
+RULE_FLAG-TC044,TC044,v2.0,Minor,message 0 contains possible offer/discount keyword: '折扣',,,,,Open
+RULE_FLAG-TC044,TC044,v2.0,Minor,message 1 contains possible offer/discount keyword: '折扣',,,,,Open
+RULE_FLAG-TC044,TC044,v2.0,Minor,message 2 contains possible offer/discount keyword: '折扣',,,,,Open
+LOW_SCORE-TC046,TC046,v2.0,Major,加权质量分 3.38 低于目标 4.2,,,,,Open
+LOW_SCORE-TC047,TC047,v2.0,Major,加权质量分 3.9 低于目标 4.2,,,,,Open
+RULE_FLAG-TC048,TC048,v2.0,Minor,message 0 contains possible offer/discount keyword: '折扣',,,,,Open
+RULE_FLAG-TC048,TC048,v2.0,Minor,message 1 contains possible offer/discount keyword: '折扣',,,,,Open
+RULE_FLAG-TC048,TC048,v2.0,Minor,message 2 contains possible offer/discount keyword: '折扣',,,,,Open
+RULE_FLAG-TC049,TC049,v2.0,Minor,message 0 contains possible offer/discount keyword: '优惠',,,,,Open
+RULE_FLAG-TC049,TC049,v2.0,Minor,message 1 contains possible offer/discount keyword: '优惠',,,,,Open
+RULE_FLAG-TC049,TC049,v2.0,Minor,message 2 contains possible offer/discount keyword: '优惠',,,,,Open

@@ -1,0 +1,31 @@
+{
+  "run_id": "eval_20261105_072226",
+  "model": "deepseek-v4-pro",
+  "prompt_version": "v1.0",
+  "n_cases": 50,
+  "n_scored": 50,
+  "structured_output_success_rate": 1.0,
+  "avg_weighted_score": 4.393,
+  "avg_diversity": 4.42,
+  "quality_target": 4.2,
+  "diversity_target": 4.0,
+  "avg_by_metric": {
+    "Relevance": 4.354,
+    "Personalization": 4.38,
+    "Brand Consistency": 4.614,
+    "Naturalness": 4.127,
+    "Context Fidelity": 4.533
+  },
+  "avg_by_scenario": {
+    "birthday_festive": 4.536,
+    "event_invitation": 4.61,
+    "post_purchase_care": 4.354,
+    "price_objection": 4.189,
+    "product_recommendation": 4.38,
+    "reactivation": 4.293
+  },
+  "factual_error_count": 5,
+  "boundary_violation_count": 1,
+  "rule_fail_count": 0,
+  "judge_error_count": 0
+}

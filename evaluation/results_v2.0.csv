@@ -1,0 +1,51 @@
+﻿Case ID,Scenario,Status,Rule Passed,Relevance,Personalization,Brand Consistency,Naturalness,Context Fidelity,Weighted Score,Diversity,Factual Error,Boundary Violation,Uncertain,Judge Error,Notes
+TC001,birthday_festive,ok,True,4.67,4.33,5.0,4.67,5.0,4.72,5,False,False,False,,三条候选整体符合 CHENGYU 优雅、温和、克制的品牌语气，无事实错误或边界侵犯。候选2最均衡，个性化与祝福结合自然；候选1简洁但偏好应用偏弱；候选3在生日祝福中带有轻度营销倾向。
+TC002,birthday_festive,ok,True,4.67,3.67,5.0,4.33,4.33,4.42,5,False,False,False,,三条候选均未虚构购买记录、价格或优惠，也未违反明确边界。主要问题集中在第二条对联系频率的假设，以及第一条未充分体现客户偏好的 warm 语气。整体质量较好，表达差异真实。
+TC003,birthday_festive,ok,True,4.67,4.33,4.33,4.33,5.0,4.52,5,False,False,False,,三条候选整体质量较高，表达策略差异明显。简洁版最克制且可直接参考；个性化版信息利用正确，但个别恭维和感谢语略显模板；咨询式版本较自然，但将生日祝福带向未来销售询问，相关性略有偏离。未发现事实错误或边界违规。
+TC004,birthday_festive,ok,True,5.0,5.0,5.0,4.33,5.0,4.87,5,False,False,False,,三条候选均准确识别生日场景，使用正式称呼并保持克制，没有虚构客户偏好或购买记录。主要差异在表达策略：简洁祝福、温暖关怀、咨询式邀请，差异真实。个别表述可进一步优化自然度。
+TC005,birthday_festive,ok,True,4.0,4.0,4.67,4.33,4.67,4.3,5,False,False,False,,候选2最契合场景与客户偏好，兼顾温暖个性化与克制；候选1可用但略泛化；候选3在节日问候中过早转入产品引导，需弱化销售意图。
+TC006,birthday_festive,ok,True,4.67,4.67,4.67,4.33,5.0,4.65,5,False,False,False,,三条均基于中秋问候展开，未虚构购买记录或优惠，未违反客户边界。候选策略差异清晰：纯问候、个性化情感连接、软性咨询引导。
+TC007,birthday_festive,ok,True,5.0,4.67,4.67,4.33,5.0,4.73,5,False,False,False,,三条均为合规生日祝福，未营销、未虚构信息，第三条主动尊重客户不希望被打扰的边界。主要改进点在于第二条略欠正式，以及个别表达可更口语化。
+TC008,birthday_festive,ok,True,4.67,5.0,5.0,4.33,5.0,4.78,5,False,False,False,,三条候选均未虚构购买记录、价格或优惠，也未有强迫购买或制造焦虑的表达。差异明显：纯祝福、偏好化祝福、咨询式祝福。生日问候与产品营销边界处理总体克制，尤其第三条存在轻微服务引导，需根据客户关系阶段谨慎选用。
+TC009,product_recommendation,ok,True,4.0,5.0,5.0,5.0,5.0,4.75,5,False,False,False,,三条话术均未虚构事实或违反客户边界，语言整体符合 CHENGYU 的优雅克制调性。concise_elegant 最完整直接；warm_personalized 自然但缺少价格信息；contextual_consultative 克制有余但澄清过多，推荐推进不足。
+TC010,product_recommendation,ok,True,4.33,4.67,5.0,5.0,5.0,4.77,5,False,False,False,,三条均未虚构事实或越界。候选1可直接参考，但 warm 语气可加强；候选2、3需补充完整产品信息或更明确完成推荐。
+TC011,product_recommendation,ok,True,4.0,4.0,4.33,4.0,3.33,3.97,4,True,False,False,,三条候选整体质量较高，但候选2和3对历史产品 Osmanthus Moon 的香调/属性做了未提供的描述，需修正；候选1更稳妥但个性化呼应略弱。
+TC012,product_recommendation,ok,True,4.67,4.67,4.67,4.67,4.33,4.62,5,False,False,False,,三条话术均未强行推荐不适配的 Amber Veil，也尊重了客户对浓香的回避。最佳为 warm_personalized，既解释了产品不匹配，又保持克制与专业。
+TC013,product_recommendation,ok,True,4.67,4.67,4.67,4.67,5.0,4.72,5,True,False,False,,三条候选整体业务相关性较好，均围绕木质调转变推荐 Cedar Reserve。候选2更贴合 warm 与历史偏好，但存在未经提供的产品感官描述，需修改以避免事实错误；候选3自然、克制，适合进一步确认偏好；未发现边界违规。
+TC014,product_recommendation,ok,True,4.67,4.67,5.0,4.33,5.0,4.72,5,False,False,False,,三条候选总体质量较好，均准确使用产品事实，未发现虚构或边界问题；候选1可补充对花香偏好的回应，候选2/3更完整兼顾清新与花香。
+TC015,product_recommendation,ok,True,5.0,4.67,4.67,4.33,5.0,4.73,5,False,False,False,,三条候选均准确引用客户不喜欢甜腻的偏好，未虚构购买记录、价格或优惠，也未违反客户边界。候选1简洁克制，最贴近 formal 偏好；候选2略偏营销化，但信息完整；候选3以询问偏好推进，咨询性最强。整体差异真实，可供顾问按场景选用。
+TC016,product_recommendation,ok,True,5.0,5.0,4.67,4.33,5.0,4.8,5,False,False,False,,三条话术均正确使用已知信息，未虚构购买记录、产品属性或优惠；信息缺失时也保持了克制。差异明显：简洁版更直接克制，温暖版更柔性但稍显修饰，咨询版通过提问更好地推进推荐。前两条可考虑增加更明确的下一步动作，但整体质量较高。
+TC017,product_recommendation,ok,True,4.0,4.33,4.67,4.0,4.33,4.25,5,False,False,False,,三条均未虚构事实或违反客户边界；第二条最贴合客户“低调且不硬朗”的需求且自然，可直接参考；第一条较模板化并忽略了“太硬朗”痛点；第三条最符合品牌语气，但咨询式推进稍缓。
+TC018,product_recommendation,ok,True,3.67,5.0,5.0,4.33,3.33,4.28,3,False,False,False,,三条均未虚构产品事实或违反客户边界。候选3信息最完整，明确产品并回应折扣诉求，最贴近顾问可用；候选1、2语气自然但均未回应折扣且未介绍现有产品，推荐目标推进不足。前两条表达差异较小。
+TC019,post_purchase_care,ok,True,4.33,3.67,4.67,3.33,4.67,4.12,5,False,False,False,,三条整体质量较高，均符合 CHENGYU 克制优雅基调；主要差异点在个性化力度与自然度，第二条稍显文艺，第三条咨询感稍重，第一条个性化偏保守。
+TC020,post_purchase_care,ok,True,4.67,3.67,4.67,4.0,5.0,4.39,5,False,False,False,,三条均正确使用已知购买信息，无事实错误或边界问题。主要扣分点在 warm 语气的落实与第三条的自然度；建议在温和问候基础上减少问卷式表达。
+TC021,post_purchase_care,ok,True,4.0,4.0,4.67,3.33,5.0,4.15,5,False,False,False,,三条候选均未虚构事实或越界，整体优雅克制。主要差异在于个性化程度与表达自然度：简洁版稳定但略模板，温暖版个性化充分但偏文艺，咨询版意图清晰但语句较长。
+TC022,post_purchase_care,ok,True,4.67,4.0,4.67,3.0,4.33,4.15,5,False,False,False,,三条候选总体相关、无事实错误与边界侵犯；warm_personalized 最贴近历史对话与 warm 偏好，concise_elegant 自然度偏弱，contextual_consultative 措辞稍显书面。
+TC023,post_purchase_care,ok,True,4.33,4.33,5.0,4.0,5.0,4.5,5,False,False,False,,三条候选均未虚构信息，语气克制且符合 formal。第三条对留香问题的跟进最具针对性；第二条个性化使用正确但表达略绕；第一条稳妥但较泛。整体差异度较高。
+TC024,post_purchase_care,ok,True,4.33,4.33,4.33,4.0,4.33,4.26,5,False,False,False,,三条候选均未虚构优惠、价格或产品信息，也未越界。候选3在场景目的、上下文一致性和自然度上最优；候选1偏模板化；候选2温暖但引导略泛。
+TC025,post_purchase_care,ok,True,2.67,3.33,4.33,3.67,3.33,3.43,4,False,False,False,,三条均未虚构购买/优惠信息，也未出现强迫购买或制造焦虑。候选二最符合 warm 偏好，候选一品牌一致性最佳但购后关怀较弱，候选三偏售前需求开发，建议购后关怀先以使用体验或售后支持切入。
+TC026,post_purchase_care,ok,True,4.0,4.0,4.33,3.67,4.33,4.05,5,False,False,False,,三条候选均未虚构购买记录、价格或活动细节，也未构成边界侵犯。warm_personalized 最贴合客户偏好与未回复背景；concise_elegant 个性化不足；contextual_consultative 文风稍强，影响自然度。
+TC027,reactivation,ok,True,4.67,5.0,4.67,3.67,5.0,4.59,4,False,False,False,,三条话术均未虚构信息或逾越客户边界，整体语气符合 CHENGYU 的优雅克制。主要差异在激活策略：简洁重连、温情问候、咨询式引导。需优化第三条的自然度与潜台词。
+TC028,reactivation,ok,True,4.67,5.0,4.67,3.67,5.0,4.59,5,False,False,False,,三条话术均克制且基本符合 CHENGYU 品牌语气，无事实错误或边界侵犯。差异度明显：简短问候、产品记忆、开放式咨询。第二条个性化较强，但文案感偏重，建议改为更自然的口语表达；第三条互动意图最好，但可减少提问数量。
+TC029,reactivation,ok,True,4.33,4.33,4.67,4.0,4.33,4.33,5,False,False,False,,三条候选策略差异明显，整体语气克制，无事实错误或边界违规。主要改进点：第三条例自然度不足；第二条例“陪伴”措辞可调整以更贴近 formal 偏好；第一条例可更明确地承认久未联系以提升重新激活效果。
+TC030,reactivation,ok,True,3.67,4.33,4.33,3.67,4.33,4.03,5,False,False,True,,三条候选有真实差异，前两条更贴近品牌气质与真实微信沟通；第三条咨询式切入可作框架，但需去模板化并谨慎使用换季判断。未发现事实错误或边界侵犯。
+TC031,reactivation,ok,True,3.67,4.67,4.33,4.67,5.0,4.4,5,False,False,False,,三条候选整体尊重客户、未虚构事实或越界，且表达差异明显。候选一克制但激活意图弱；候选二温暖但提及购买记录和私人问题不够含蓄；候选三咨询感强但问题略空泛。建议融合三者的优雅、温暖与引导性。
+TC032,reactivation,ok,True,4.0,4.0,4.33,4.33,4.67,4.23,5,False,False,False,,三条均未虚构事实或触碰客户边界；第3条最契合 formal 偏好的咨询式 reactivation，第1条简洁但推进感偏弱，第2条需调整至更正式、克制。
+TC033,reactivation,ok,True,3.67,4.67,5.0,3.67,4.33,4.24,4,False,False,False,,三条均尊重客户减少营销联系的边界，无事实错误或越界。warm_personalized 综合最克制且保留互动入口；contextual_consultative 需弱化产品使用假设并提升自然度。
+TC034,reactivation,ok,True,3.33,4.33,4.67,3.67,5.0,4.12,5,False,False,False,,三条候选均未虚构购买记录或优惠信息，也未越界或制造焦虑；整体语气符合 CHENGYU 的优雅克制。前两条复联钩子较弱，更像被动问候；第三条通过季节与氛围切入，最贴合 reactivation 目标，适合作为顾问参考。
+TC035,event_invitation,ok,True,5.0,5.0,5.0,5.0,5.0,5.0,5,False,False,False,,三条话术均准确使用活动时间、地点、形式及客户偏好，未虚构购买记录或优惠；语气克制优雅，符合品牌基调；三条在信息顺序与表达方式上有实质差异，可直接参考。
+TC036,event_invitation,ok,True,4.33,4.67,4.33,4.67,4.33,4.47,4,True,False,False,,三条候选均能完成活动邀请。候选1简洁但略偏模板；候选2自然温暖，但将 Amber Veil 描述为琥珀香调作品，超出已提供信息，已单独记为事实错误，且部分语气略随意；候选3最克制、对话感好，整体质量最高。
+TC037,event_invitation,ok,True,5.0,4.67,4.67,4.67,4.67,4.75,5,False,False,False,,三条候选均正确使用活动信息，未虚构优惠或购买记录。第一条最可直接采用；第二条温暖但略多模板化表达；第三条咨询感最强，但需注意对新品香调的推测边界。
+TC038,event_invitation,ok,True,4.33,5.0,4.67,4.33,4.67,4.58,4,False,False,False,,三条候选均准确传递活动时间、地点与主题，未虚构核心事实或强推。主要差异在沟通策略与正式度：简洁正式、温暖共情、咨询式各有侧重；第三条对后续活动的承诺需谨慎，避免给客户造成未经验证的预期。
+TC039,event_invitation,ok,True,4.67,4.0,4.67,4.33,4.33,4.42,5,False,False,False,,三条均使用正确活动信息，无强迫或越界。第一条稳健但个性化可更具体；第二条最符合 warm 偏好，可直接参考；第三条需弱化未经提供的内部动作并关联历史反馈。
+TC040,event_invitation,ok,True,4.67,4.67,4.67,4.33,4.67,4.6,5,False,False,False,,三条候选均准确使用活动信息，尊重客户忙碌且主动提供减少联系选项，无事实错误或边界违反。候选二最自然且个性化；候选一正式但较模板；候选三邀请动作稍弱。
+TC041,event_invitation,ok,True,4.33,4.33,4.67,4.0,4.67,4.38,5,False,False,False,,三条话术均未虚构活动细节或购买记录，且都正确使用了木质香调偏好。第一条最克制稳妥；第二条更温暖但略书面；第三条咨询式表达稍显销售探测，个性化可更克制。
+TC042,event_invitation,ok,True,4.67,4.0,5.0,5.0,4.67,4.67,5,False,False,False,,三条候选均仅使用已提供的活动事实，未编造名额、优惠、购买记录或客户偏好；表达策略差异清晰。主要不足是候选1未体现 warm 语气，候选2省略了具体时间。
+TC043,price_objection,ok,True,3.67,4.33,4.33,3.67,5.0,4.13,3,False,False,False,,三条候选均未虚构事实、未强迫购买，且尊重客户决定；但整体对价格异议的处理偏谨慎/空泛，缺少从产品价值、浓度或留香等角度的具体说服。第一条与第二条结构和语气较接近，多样性中等。
+TC044,price_objection,ok,True,4.33,4.0,4.33,4.0,4.67,4.25,5,False,False,False,,三条候选均未虚构折扣、购买记录或优惠，也未出现强迫购买或制造焦虑。候选2最贴合客户的warm偏好并正确使用琥珀信息；候选1简洁但个性化较弱；候选3咨询导向但可更直接地确认已知偏好。
+TC045,price_objection,ok,True,4.0,4.33,4.67,4.0,4.67,4.3,5,False,False,False,,三条话术均未虚构事实或违反边界，语气基本符合 CHENGYU 温和克制的品牌调性。主要不足是价格异议处理偏轻，缺少对产品价值或价格差异的说明；三者策略差异明显，可依据客户沟通风格选用。
+TC046,price_objection,ok,True,2.0,4.0,4.0,3.67,3.67,3.38,3,False,False,False,,三条候选在品牌语气与尊重方面基本合格，但均未真正回应石女士“凭什么这么贵”的价格异议；应将产品价值、EDP浓度或可证实的产品特性等纳入回应。多样性中等，前两条核心结构较接近。
+TC047,price_objection,ok,True,3.33,3.67,4.33,4.33,4.0,3.9,4,False,False,False,,三条话术均未正面处理价格异议核心（1280 元 vs 1000 元预算），但语气均保持尊重克制。warm_personalized 最贴合 warm 偏好，但存在未经提供的产品描述；contextual_consultative 最具咨询感，适合继续挖掘偏好。
+TC048,price_objection,ok,True,4.0,4.33,4.33,4.0,4.67,4.23,5,False,False,False,,三条候选均未虚构事实或越界，产品与价格信息使用准确。concise_elegant 和 warm_personalized 较直接处理价格异议；contextual_consultative 转向需求探索，但可能回避客户当下的价格关切，relevance 需优化。整体表达差异明显。
+TC049,price_objection,ok,True,4.33,4.33,5.0,4.67,4.67,4.58,5,False,False,False,,三条候选均未虚构产品信息或优惠，整体合规；候选二在价格异议处理、语气自然度与上下文一致性上最均衡，候选一收束感较强，候选三咨询导向但需注意老客户自我声明。
+TC050,price_objection,ok,True,4.0,4.33,4.33,4.0,4.0,4.13,5,False,False,False,,三条均无事实错误和边界违规。候选1最符合场景，简洁、克制且尊重客户决定；候选2共情表达较好，但“之后也不会打扰您”过度扩大了客户意图；候选3在客户关闭信号后仍询问偏好和替代推荐，时机与克制度需要调整。

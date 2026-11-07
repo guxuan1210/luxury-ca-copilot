@@ -1,0 +1,84 @@
+{
+  "products": [
+    {
+      "id": "P001",
+      "name": "CHENGYU Tea Mist",
+      "category": "Eau de Parfum",
+      "notes": ["white tea", "soft musk", "bergamot"],
+      "price_cny": 1280,
+      "description": "清雅白茶与柔和麝香交织，点缀一丝佛手柑，适合偏爱清淡茶香的客户。"
+    },
+    {
+      "id": "P002",
+      "name": "CHENGYU Bamboo Rain",
+      "category": "Eau de Parfum",
+      "notes": ["bamboo leaf", "green fig", "cedar"],
+      "price_cny": 1380,
+      "description": "雨后竹林般的清新绿意，青无花果与雪松收尾，干净而有层次。"
+    },
+    {
+      "id": "P003",
+      "name": "CHENGYU Osmanthus Moon",
+      "category": "Eau de Parfum",
+      "notes": ["osmanthus", "apricot", "sandalwood"],
+      "price_cny": 1180,
+      "description": "桂花的温柔与杏子的清甜，檀木打底，柔和温暖，适合日常与礼赠。"
+    },
+    {
+      "id": "P004",
+      "name": "CHENGYU Amber Veil",
+      "category": "Extrait de Parfum",
+      "notes": ["amber", "vanilla", "oud"],
+      "price_cny": 1980,
+      "description": "琥珀与香草的温暖包裹，沉香的深邃，浓郁而克制，留香持久。"
+    },
+    {
+      "id": "P005",
+      "name": "CHENGYU Silk Peony",
+      "category": "Eau de Parfum",
+      "notes": ["peony", "lychee", "white musk"],
+      "price_cny": 1280,
+      "description": "牡丹的优雅与荔枝的清甜，白麝香收尾，柔美而不过分甜腻。"
+    },
+    {
+      "id": "P006",
+      "name": "CHENGYU Cedar Reserve",
+      "category": "Extrait de Parfum",
+      "notes": ["cedarwood", "vetiver", "tobacco leaf"],
+      "price_cny": 1880,
+      "description": "雪松与香根草的木质基调，烟草叶增添沉稳，中性而富有质感。"
+    },
+    {
+      "id": "P007",
+      "name": "CHENGYU Lotus Mist",
+      "category": "Eau de Toilette",
+      "notes": ["lotus", "cucumber", "water lily"],
+      "price_cny": 880,
+      "description": "荷花与睡莲的水生清新，黄瓜的轻盈，适合夏季与喜欢清淡香气的客户。"
+    },
+    {
+      "id": "P008",
+      "name": "CHENGYU Winter Plum",
+      "category": "Eau de Parfum",
+      "notes": ["plum blossom", "incense", "patchouli"],
+      "price_cny": 1280,
+      "description": "腊梅的清冷与焚香的安静，广藿香收尾，含蓄而有意境。"
+    },
+    {
+      "id": "P009",
+      "name": "CHENGYU Scented Candle – Mountain Rain",
+      "category": "Home Fragrance",
+      "notes": ["moss", "rain accord", "cedar"],
+      "price_cny": 620,
+      "description": "苔藓与雨后气息的家居香氛蜡烛，雪松收尾，营造宁静氛围。"
+    },
+    {
+      "id": "P010",
+      "name": "CHENGYU Scented Candle – Moonlit Garden",
+      "category": "Home Fragrance",
+      "notes": ["jasmine", "neroli", "amber"],
+      "price_cny": 580,
+      "description": "茉莉与橙花的夜晚花园香氛蜡烛，琥珀打底，温柔舒缓。"
+    }
+  ]
+}
